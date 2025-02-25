@@ -1,0 +1,92 @@
+<!-- 단일 HTML 파일에서 axios를 이용하여 REST API를 호출하는 예제입니다. -->
+<!-- 파일은 src/main/resources/static 폴더 아래에 위치시킵니다. -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>병원 예약 관리 시스템</title>
+    <!-- Bootstrap CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">예약 관리 시스템</h1>
+
+    <!-- 예약 등록 폼 -->
+    <div class="card mb-4">
+        <div class="card-header">예약 등록</div>
+        <div class="card-body">
+            <form id="reservationForm">
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="hid" class="form-label">HID</label>
+                        <input type="text" class="form-control" id="hid" placeholder="HID (예: 병원 ID)">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="hname" class="form-label">HName</label>
+                        <input type="text" class="form-control" id="hname" placeholder="HName (예: 병원명)">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="status" class="form-label">상태</label>
+                        <input type="text" class="form-control" id="status" placeholder="상태">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4">
+                        <label for="pid" class="form-label">PID</label>
+                        <input type="number" class="form-control" id="pid" placeholder="PID (예약번호)">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="pname" class="form-label">환자명</label>
+                        <input type="text" class="form-control" id="pname" placeholder="환자명">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="dname" class="form-label">의사명</label>
+                        <input type="text" class="form-control" id="dname" placeholder="의사명">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="dcontent" class="form-label">예약 내용</label>
+                    <input type="text" class="form-control" id="dcontent" placeholder="예약 내용">
+                </div>
+                <button type="button" class="btn btn-primary" onclick="onSave()">등록</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- 예약 목록 (목록형) -->
+    <div class="mb-4">
+        <h2>예약 목록 (목록)</h2>
+        <div id="reservation-list" class="border p-3 rounded"></div>
+    </div>
+
+    <!-- 예약 목록 (테이블형) -->
+    <div class="mb-4">
+        <h2>예약 목록 (테이블)</h2>
+        <table class="table table-bordered table-striped">
+            <thead class="table-light">
+            <tr>
+                <th>PID</th>
+                <th>HID</th>
+                <th>HName</th>
+                <th>Status</th>
+                <th>환자명</th>
+                <th>의사명</th>
+                <th>예약 내용</th>
+                <th>액션</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- 데이터가 여기에 추가됩니다 -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- axios js : 본인 JS 보다 위 -->
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script src="index.js"></script>
+</body>
+</html>
