@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies { // 라이브러리를 넣는 의존성 구간
+    // [1] 스프링 웹 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    // [2] 롬복 라이브러리
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    // [3] MYSQL JDBC 라이브러리
+    runtimeOnly 'com.mysql:mysql-connector-j'
+    // [4] 마이바티스 라이브러리
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+test {
+    useJUnitPlatform()
+}
