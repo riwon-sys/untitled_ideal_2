@@ -5,176 +5,116 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>병원 예약 관리 시스템</title>
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-
     <style>
         /* 네이버 나눔스퀘어 폰트 임포트 */
-@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+        @import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
 
-/* 기본적인 스타일 초기화 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        /* 기본적인 스타일 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* 전체 폰트 설정 */
-body {
-    font-family: 'NanumSquare', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
-    line-height: 1.6;
-}
+        /* 전체 폰트 설정 */
+        body {
+            font-family: 'NanumSquare', sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            line-height: 1.6;
+        }
 
-/* 페이지 중앙 정렬 및 여백 설정 */
-.container {
-    margin-top: 50px;
-    padding: 20px;
-}
+        .container {
+            margin-top: 50px;
+            padding: 20px;
+        }
 
-/* 헤더 스타일 */
-h1 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 30px;
-    color: #3a3a3a;
-}
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 30px;
+            color: #3a3a3a;
+        }
 
-/* 예약 등록 폼 스타일 */
-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 40px;
-}
+        /* 버튼 스타일 */
+        button.btn {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1rem;
+            border-radius: 5px;
+            border: none;
+        }
 
-form label {
-    font-weight: bold;
-}
+        button.btn-primary {
+            background-color: #007bff;
+            color: #fff;
+        }
 
-form .form-control {
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    font-size: 1rem;
-}
+        button.btn-primary:hover {
+            background-color: #0056b3;
+        }
 
-form .form-select {
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    font-size: 1rem;
-}
+        .table {
+            width: 100%;
+            margin-top: 30px;
+        }
 
-/* 버튼 스타일 */
-button.btn {
-    width: 100%;
-    padding: 12px;
-    font-size: 1.1rem;
-    border-radius: 5px;
-    border: none;
-}
+        .table th, .table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
 
-button.btn-primary {
-    background-color: #007bff;
-    color: #fff;
-}
+        .table th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
 
-button.btn-primary:hover {
-    background-color: #0056b3;
-}
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
 
-/* 예약 목록 리스트 스타일 */
-#reservation-list ul {
-    list-style: none;
-    padding: 0;
-}
+        /* 예약 목록 리스트 스타일 */
+        #reservation-list ul {
+            list-style: none;
+            padding: 0;
+        }
 
-#reservation-list li {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    padding: 12px;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
+        #reservation-list li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
 
-#reservation-list li:hover {
-    background-color: #f9f9f9;
-}
+        #reservation-list li:hover {
+            background-color: #f9f9f9;
+        }
 
-/* 예약 목록 테이블 스타일 */
-.table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 30px;
-}
+        /* 반응형 스타일 */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
 
-.table th, .table td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #ddd;
-}
+            h1 {
+                font-size: 2rem;
+            }
 
-.table th {
-    background-color: #f8f9fa;
-    font-weight: bold;
-}
-
-.table tbody tr:hover {
-    background-color: #f1f1f1;
-}
-
-/* 수정 및 삭제 버튼 스타일 */
-button.btn-sm {
-    font-size: 0.9rem;
-}
-
-button.btn-warning {
-    background-color: #ffc107;
-    color: #fff;
-}
-
-button.btn-warning:hover {
-    background-color: #e0a800;
-}
-
-button.btn-danger {
-    background-color: #dc3545;
-    color: #fff;
-}
-
-button.btn-danger:hover {
-    background-color: #c82333;
-}
-
-/* 반응형 스타일 */
-@media (max-width: 768px) {
-    .container {
-        padding: 10px;
-    }
-
-    h1 {
-        font-size: 2rem;
-    }
-
-    form .form-control, form .form-select {
-        font-size: 0.9rem;
-    }
-
-    button.btn {
-        font-size: 1rem;
-    }
-}
+            button.btn {
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
 <body>
 
-<div class="container mt-5">
+<div class="container">
     <h1>예약 관리 시스템</h1>
 
     <!-- 예약 등록 폼 -->
@@ -211,14 +151,12 @@ button.btn-danger:hover {
 
     <hr>
 
-    <!-- 예약 목록 표시 영역 -->
-    <h3>예약 목록</h3>
-    <div id="reservation-list">
-        <!-- 예약 목록은 JavaScript에서 동적으로 추가됩니다. -->
-    </div>
+    <!-- 예약 목록 표시 영역 (List View) -->
+    <h3>예약 목록 (리스트)</h3>
+    <div id="reservation-list"></div>
 
-    <!-- 예약 목록 테이블 -->
-    <h3>예약 목록 테이블</h3>
+    <!-- 예약 목록 테이블 표시 -->
+    <h3>예약 목록 (테이블)</h3>
     <table class="table table-bordered">
         <thead>
         <tr>
@@ -235,6 +173,9 @@ button.btn-danger:hover {
         <!-- 예약 목록은 JavaScript에서 동적으로 추가됩니다. -->
         </tbody>
     </table>
+
+    <!-- Pagination controls -->
+    <div id="pagination" class="mt-3"></div>
 </div>
 
 <!-- axios js : 본인 JS 보다 위 -->

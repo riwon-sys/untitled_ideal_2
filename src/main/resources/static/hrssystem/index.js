@@ -26,10 +26,10 @@ const onFindAll = async () => {
     response.data.forEach(reservation => {
       html += `<tr>
         <td>${reservation.appointmentid}</td>
-        <td>${reservation.pname}</td> <!-- 환자명 표시 -->
-        <td>${reservation.dname}</td> <!-- 의사명 표시 -->
+        <td>${reservation.pname}</td>
+        <td>${reservation.dname}</td>
         <td>${reservation.status === 1 ? '예약확정' : '취소됨'}</td>
-        <td>${reservation.dcontent}</td> <!-- 예약 내용 표시 -->
+        <td>${reservation.dcontent}</td>
         <td>
           <button class="btn btn-sm btn-warning me-2" onclick="onUpdate(${reservation.appointmentid})">수정</button>
           <button class="btn btn-sm btn-danger" onclick="onDelete(${reservation.appointmentid})">삭제</button>
@@ -82,7 +82,6 @@ const onUpdate = async (pid) => {
     console.error(e);
   }
 };
-
 // 🚀 [5] 예약 삭제 함수 (axios async/await 사용)
 const onDelete = async (pid) => {
   try {
