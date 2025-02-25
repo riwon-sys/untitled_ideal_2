@@ -22,14 +22,8 @@ public class AppointmentController {
     // 전체 예약 조회
     @GetMapping
     public ResponseEntity<List<AppointmentDto>> getAllAppointments() {
-        return ResponseEntity.ok(appointmentService.getAllAppointments());
-    }
-
-    // 특정 예약 조회
-    @GetMapping("/{id}")
-    public ResponseEntity<AppointmentDto> getAppointment(@PathVariable int id) {
-        AppointmentDto appointment = appointmentService.getAppointmentById(id);
-        return appointment != null ? ResponseEntity.ok(appointment) : ResponseEntity.notFound().build();
+        List<AppointmentDto> appointments = appointmentService.getAllAppointments();
+        return ResponseEntity.ok(appointments);
     }
 
     // 예약 등록

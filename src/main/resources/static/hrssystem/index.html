@@ -8,80 +8,233 @@
     <title>병원 예약 관리 시스템</title>
     <!-- Bootstrap CSS CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* 네이버 나눔스퀘어 폰트 임포트 */
+@import url('https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css');
+
+/* 기본적인 스타일 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 전체 폰트 설정 */
+body {
+    font-family: 'NanumSquare', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* 페이지 중앙 정렬 및 여백 설정 */
+.container {
+    margin-top: 50px;
+    padding: 20px;
+}
+
+/* 헤더 스타일 */
+h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #3a3a3a;
+}
+
+/* 예약 등록 폼 스타일 */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 40px;
+}
+
+form label {
+    font-weight: bold;
+}
+
+form .form-control {
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+form .form-select {
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+/* 버튼 스타일 */
+button.btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    border: none;
+}
+
+button.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+button.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* 예약 목록 리스트 스타일 */
+#reservation-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+#reservation-list li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#reservation-list li:hover {
+    background-color: #f9f9f9;
+}
+
+/* 예약 목록 테이블 스타일 */
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    font-weight: bold;
+}
+
+.table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* 수정 및 삭제 버튼 스타일 */
+button.btn-sm {
+    font-size: 0.9rem;
+}
+
+button.btn-warning {
+    background-color: #ffc107;
+    color: #fff;
+}
+
+button.btn-warning:hover {
+    background-color: #e0a800;
+}
+
+button.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+button.btn-danger:hover {
+    background-color: #c82333;
+}
+
+/* 반응형 스타일 */
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    form .form-control, form .form-select {
+        font-size: 0.9rem;
+    }
+
+    button.btn {
+        font-size: 1rem;
+    }
+}
+    </style>
 </head>
 <body>
+
 <div class="container mt-5">
-    <h1 class="text-center mb-4">예약 관리 시스템</h1>
+    <h1>예약 관리 시스템</h1>
 
     <!-- 예약 등록 폼 -->
-    <div class="card mb-4">
-        <div class="card-header">예약 등록</div>
-        <div class="card-body">
-            <form id="reservationForm">
-                <div class="row mb-3">
-                    <div class="col-md-4">
-                        <label for="hid" class="form-label">HID</label>
-                        <input type="text" class="form-control" id="hid" placeholder="HID (예: 병원 ID)">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="hname" class="form-label">HName</label>
-                        <input type="text" class="form-control" id="hname" placeholder="HName (예: 병원명)">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="status" class="form-label">상태</label>
-                        <input type="text" class="form-control" id="status" placeholder="상태">
-                    </div>
-                </div>
-                <div class="row mb-3">
-                    <div class="col-md-4">
-                        <label for="pid" class="form-label">PID</label>
-                        <input type="number" class="form-control" id="pid" placeholder="PID (예약번호)">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="pname" class="form-label">환자명</label>
-                        <input type="text" class="form-control" id="pname" placeholder="환자명">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="dname" class="form-label">의사명</label>
-                        <input type="text" class="form-control" id="dname" placeholder="의사명">
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label for="dcontent" class="form-label">예약 내용</label>
-                    <input type="text" class="form-control" id="dcontent" placeholder="예약 내용">
-                </div>
-                <button type="button" class="btn btn-primary" onclick="onSave()">등록</button>
-            </form>
+    <form id="reservationForm">
+        <div class="mb-3">
+            <label for="pid" class="form-label">환자 ID</label>
+            <input type="text" class="form-control" id="pid" required>
         </div>
+        <div class="mb-3">
+            <label for="dname" class="form-label">의사명</label>
+            <input type="text" class="form-control" id="dname" required>
+        </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">상태</label>
+            <select class="form-select" id="status" required>
+                <option value="1">예약확정</option>
+                <option value="0">취소됨</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="appointmentdate" class="form-label">예약 날짜</label>
+            <input type="date" class="form-control" id="appointmentdate" required>
+        </div>
+        <div class="mb-3">
+            <label for="appointmenttime" class="form-label">예약 시간</label>
+            <input type="time" class="form-control" id="appointmenttime" required>
+        </div>
+        <div class="mb-3">
+            <label for="dcontent" class="form-label">예약 내용</label>
+            <input type="text" class="form-control" id="dcontent" required>
+        </div>
+        <button type="button" class="btn btn-primary" onclick="onSave()">예약 등록</button>
+    </form>
+
+    <hr>
+
+    <!-- 예약 목록 표시 영역 -->
+    <h3>예약 목록</h3>
+    <div id="reservation-list">
+        <!-- 예약 목록은 JavaScript에서 동적으로 추가됩니다. -->
     </div>
 
-    <!-- 예약 목록 (목록형) -->
-    <div class="mb-4">
-        <h2>예약 목록 (목록)</h2>
-        <div id="reservation-list" class="border p-3 rounded"></div>
-    </div>
-
-    <!-- 예약 목록 (테이블형) -->
-    <div class="mb-4">
-        <h2>예약 목록 (테이블)</h2>
-        <table class="table table-bordered table-striped">
-            <thead class="table-light">
-            <tr>
-                <th>PID</th>
-                <th>HID</th>
-                <th>HName</th>
-                <th>Status</th>
-                <th>환자명</th>
-                <th>의사명</th>
-                <th>예약 내용</th>
-                <th>액션</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- 데이터가 여기에 추가됩니다 -->
-            </tbody>
-        </table>
-    </div>
+    <!-- 예약 목록 테이블 -->
+    <h3>예약 목록 테이블</h3>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>예약 ID</th>
+            <th>환자명</th>
+            <th>의사명</th>
+            <th>상태</th>
+            <th>예약 내용</th>
+            <th>수정</th>
+            <th>삭제</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 예약 목록은 JavaScript에서 동적으로 추가됩니다. -->
+        </tbody>
+    </table>
 </div>
 
 <!-- axios js : 본인 JS 보다 위 -->
